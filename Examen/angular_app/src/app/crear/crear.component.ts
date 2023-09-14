@@ -22,7 +22,7 @@ export class CrearComponent {
   constructor(private crearService: crearService, public fb: FormBuilder, public listaService:listaService) {
     this.myForm = this.fb.group({
       nacimiento: ['', [Validators.required, Validators.max(new Date(new Date().getFullYear() - 14).getTime()), Validators.min(new Date(new Date().getFullYear() - 150).getTime())]],
-      telefono: ['', [Validators.maxLength(25), Validators.pattern(/^\+[0-9]{1-3}-[0-9]{3-14}$/)]],
+      telefono: ['', [Validators.maxLength(25), Validators.pattern(/^\+[0-9]{1,3}-[0-9]{3,14}$/)]],
       nombre: ['', [Validators.required, Validators.maxLength(50), Validators.pattern('^[a-zA-Z ]{1,50}')]]
     });
   }

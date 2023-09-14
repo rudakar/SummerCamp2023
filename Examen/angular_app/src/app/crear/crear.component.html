@@ -16,7 +16,8 @@
                   <input formControlName="telefono" type="text" class="form-control mt-3" id="tele">
                 </div>
                 <div class="text-danger" *ngIf="myForm.get('telefono')?.errors && myForm.get('telefono')?.dirty">
-                  <p *ngIf="myForm.get('telefono')?.hasError('pattern')"><small>Formato incorreto</small></p>
+                  <p *ngIf="myForm.get('telefono')?.hasError('pattern')"><small>Formato incorrecto. Ejemplo: +(prefijo
+                    pais)-(numero de teléfono)</small></p>
                   <p *ngIf="myForm.get('telefono')?.hasError('maxLength')"><small>Maximo 25 caracteres</small></p>
                 </div>
                 <div class="form-group mb-3">
