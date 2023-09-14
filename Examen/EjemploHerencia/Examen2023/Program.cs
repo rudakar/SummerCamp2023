@@ -23,21 +23,10 @@ builder.Services.AddDbContext<ContextoPersona>(options =>
               options.UseSqlServer(builder.Configuration["ConnectionStrings:ConexionDatos"]);
           });
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll",
-        builder =>
-        {
-            builder
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-        });
-});
+builder.Services.AddCors(options =>            {                options.AddPolicy("AllowAll", builder =>                {                    builder.AllowAnyOrigin()                           .AllowAnyMethod()                           .AllowAnyHeader();                });            });
 
 
 var app = builder.Build();
-app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -46,6 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

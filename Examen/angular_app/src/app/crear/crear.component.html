@@ -1,22 +1,38 @@
 <div class="container mt-3">
     <div class="row mt-3">
         <div class="col">
-            <form>
+            <form [formGroup]="myForm" (ngSubmit)="rellenarRegistro(myForm)" novalidate>
                 <div class="form-group mb-3">
                   <label for="nom">Nombre</label>
-                  <input type="text" class="form-control mt-3" id="nom">
+                  <input formControlName="nombre" type="text" class="form-control mt-3" id="nom">
+                </div>
+                <div class="text-danger" *ngIf="myForm.get('nombre')?.errors && myForm.get('nombre')?.dirty">
+                  <p *ngIf="myForm.get('nombre')?.hasError('required')"><small>Campo requerido</small></p>
+                  <p *ngIf="myForm.get('nombre')?.hasError('pattern')"><small>Formato incorreto</small></p>
+                  <p *ngIf="myForm.get('nombre')?.hasError('maxLength')"><small>Maximo 50 caracteres</small></p>
                 </div>
                 <div class="form-group mb-3">
                   <label for="tele">Telefono</label>
-                  <input type="text" class="form-control mt-3" id="tele">
+                  <input formControlName="telefono" type="text" class="form-control mt-3" id="tele">
+                </div>
+                <div class="text-danger" *ngIf="myForm.get('telefono')?.errors && myForm.get('telefono')?.dirty">
+                  <p *ngIf="myForm.get('telefono')?.hasError('pattern')"><small>Formato incorreto</small></p>
+                  <p *ngIf="myForm.get('telefono')?.hasError('maxLength')"><small>Maximo 25 caracteres</small></p>
                 </div>
                 <div class="form-group mb-3">
                   <label for="date">Fecha de nacimiento</label>
-                  <input type="date" class="form-control mt-3" id="date">
+                  <input formControlName="nacimiento" type="date" class="form-control mt-3" id="date">
                 </div>
-                <button type="submit" class="btn btn-primary ">Submit</button>
+                <div class="text-danger" *ngIf="myForm.get('nacimiento')?.errors && myForm.get('nacimiento')?.dirty">
+                  <p *ngIf="myForm.get('nacimiento')?.hasError('required')"><small>Campo requerido</small></p>
+                  <p *ngIf="myForm.get('nacimiento')?.hasError('pattern')"><small>Formato incorreto</small></p>
+                  <p *ngIf="myForm.get('nacimiento')?.hasError('max')"><small>Tienes que tener mas de 14 años para
+                      registrarte.</small></p>
+                  <p *ngIf="myForm.get('nacimiento')?.hasError('min')"><small>No puedes tener mas de 150 años.</small></p>
+                </div>
+                <button type="submit" [disabled]="myForm.invalid" class="btn btn-primary ">Submit</button>
               </form>
         </div>
-        <div class="col"><app-lista></app-lista></div>
+        <div class="col"><app-lista [lista]="lista" (cambio)="cargar(true)"></app-lista></div>
     </div>
 </div>

@@ -7,11 +7,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+      <tr *ngFor='let persona of lista'>
+        <td>{{persona.nombre}}</td>
+        <td>{{persona.telefono}}</td>
+        <td>{{persona.fechanacimiento | date:'dd-MM-yyyy' }}</td>
       </tr>
     </tbody>
   </table>
